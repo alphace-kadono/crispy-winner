@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <script src="components/loader.js"></script>
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/key.js"></script>
+  <script src="js/app.js"></script>https://monaca.mobi/dashboard?_ga=1.102777349.484666849.1472689582
+  <script src="js/cssua.min.js"></script>
+</head>
+<body>
+
+    <!-- [1 LOGIN] ログインページ -->
+    <div data-role="page" id="LoginPage" data-theme="t">
+        <header data-role="header" data-position="fixed" data-theme="e">
+            <h1>mBaaSショップ</h1>
+        </header>
+        <section data-role="content">
+            <center><h1>mBaaSショップ</h1></center>
+                メールアドレス
+            <input type="text" id="login_mailaddress">
+                パスワード
+            <input type="password" id="login_password">
+                新規登録？
+            <a href="#SignupPage" data-role="button" data-mini="true" data-inline="true" data-theme="e">会員登録</a>
+            <a href="#" id="LoginBtn" data-role="button" data-inline="false" data-theme="e">ログイン</a>
+        </section>
+    </div>
+
+    <!-- [2 SIGNUP] 会員ログインリクエストページ -->
+    <div data-role="page" id="SignupPage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="t">
+        <h1>mBaaSショップ</h1>
+    </header>
+        <section data-role="content">
+        <h1>新規登録</h1>
+      メールアドレス
+        <input type="text" id="signup_mailaddress">
+        <a href="#" id="SignupBtn" data-role="button" data-inline="false" data-theme="e">送信</a>
+        <a href="#LoginPage" data-role="button" data-mini="true" data-inline="true" data-theme="e">戻る</a>
+      </section>
+    </div>
+
+
+  <!-- [3 REGISTER] 会員登録ページ -->
+  <div data-role="page" id="RegisterPage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="e">
+        <h1>mBaaSショップ</h1>
+    </header>
+        <section data-role="content">
+        <h1>新規会員登録</h1>
+      ニックネーム
+        <input type="text" id="reg_nickname">
+        <div class="ui-field-contain">
+            <fieldset data-role="controlgroup">
+              <legend>性別</legend>
+              <input id="reg_male" name="reg_gender" type="radio" value="男性" />
+              <label for="reg_male">男性</label>
+              <input id="reg_female" name="reg_gender" type="radio" value="女性" />
+              <label for="reg_female">女性</label>
+            </fieldset>
+        </div>
+      都道府県
+        <input type="text" id="reg_prefecture">
+        <a href="#" id="RegisterBtn" data-role="button" data-inline="false" data-theme="e">登録</a>
+      </section>
+  </div>
+
+  <!-- [4 INFORMATION] 登録した情報ページ -->
+  <div data-role="page" id="InfoPage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="e">
+      <h1>mBaaSショップ</h1>
+      <a href="#TopPage" class="ui-btn-right" data-role="button" data-mini="true" data-inline="true" data-theme="e">戻る</a>
+    </header>
+    <section data-role="content">
+        <div data-role="content" id="shopArea">
+             <h1>♡会員ページ♡</h1>
+             <br />ニックネーム：<label id="info_nickName"></label>
+             <br />性別：<label id="info_gender"></label>
+             <br />都道府県：<label id="info_prefecture"></label>
+             <br />メールアドレス：<label id="info_mailaddress"></label>
+        </div>
+        <div data-role="footer" data-position="fixed" data-theme="e">
+            <div data-role="navbar" data-theme="t">
+                <ul>
+                    <li><a href="#" onclick="showShopList()" data-icon="top">トップ</a></li>
+                    <li><a href="#" onclick="showFavorite()" data-icon="favorite">お気に入り</a></li>
+                    <li><a href="#" onclick="showInfoPage()" data-icon="information">マイページ</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+  </div>
+
+  <!-- [5 TOP] メインページ -->
+  <div data-role="page" id="TopPage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="e">
+      <h1>mBaaSショップ</h1>
+      <a href="#yesNoDialog_logout" class="ui-btn-left" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-theme="e">ログアウト</a>
+    </header>
+    <section data-role="content">
+      <!--Main page show-->
+        <div data-role="content" id="contentArea">
+             <label id="nickName"></label>さん、こんにちは。
+        </div>
+
+        <ul data-role="listview" data-theme="e" id="listShop"  >
+        </ul>
+
+        <div data-role="footer" data-position="fixed" data-theme="e">
+            <div data-role="navbar" data-theme="t">
+                <ul>
+                    <li><a href="#" onclick="showShopList()" data-icon="top">トップ</a></li>
+                    <li><a href="#" onclick="showFavorite()" data-icon="favorite">お気に入り</a></li>
+                    <li><a href="#" onclick="showInfoPage()" data-icon="information">マイページ</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--Dialog box confirming logout-->
+        <div data-role="popup" id="yesNoDialog_logout" data-overlay-theme="e" data-theme="e" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+            <div data-role="header" data-theme="e" class="ui-corner-top" style="top: 0 !important;">
+                <h1>ログアウト確認</h1>
+            </div>
+            <div align="middle" data-role="content" data-theme="e" class="ui-corner-bottom ui-content">
+                <h3 class="ui-title">
+            <p>ログアウトしてもよろしいですか？</p>
+            <a href="#" id="YesBtn_logout" data-role="button" data-inline="true" data-transition="flow" data-theme="e">はい</a>
+            <a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="e">いいえ</a>
+        </div>
+    </div>
+    </section>
+  </div>
+
+  <!-- [6 FAVORITE] お気に入りページ -->
+  <div data-role="page" id="FavoritePage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="e">
+      <h1>mBaaSショップ</h1>
+      <a href="#TopPage" class="ui-btn-right" data-role="button" data-mini="true" data-inline="true" data-theme="e">戻る</a>
+    </header>
+    <section data-role="content">
+        <div data-role="content" id="shopArea">
+            <h1>登録済みのお気に入り</h1>
+            <label id="favorite_nickName"></label>
+        </div>
+
+        <div data-theme="e" id="listFavoriteShop"  ></div>
+        <a href="#" id="UpdateFavoriteBtn" data-role="button" data-inline="false" data-theme="e">お気に入り更新する</a>
+        <div data-role="footer" data-position="fixed" data-theme="e">
+            <div data-role="navbar" data-theme="t">
+                <ul>
+                    <li><a href="#" onclick="showShopList()" data-icon="top">トップ</a></li>
+                    <li><a href="#" onclick="showFavorite()" data-icon="favorite">お気に入り</a></li>
+                    <li><a href="#" onclick="showInfoPage()" data-icon="information">マイページ</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+  </div>
+
+  <!-- [7 SHOP] お店ページ -->
+  <div data-role="page" id="ShopPage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="e">
+      <h1>mBaaSショップ</h1>
+      <a href="#TopPage" class="ui-btn-right" data-role="button" data-mini="true" data-inline="true" data-theme="e">戻る</a>
+    </header>
+    <section data-role="content">
+      <!--Shop show-->
+       <div data-role="content" id="shopArea">
+            <div id="shop detail" style="width:100%; height:100%;">
+                <h2 id="shopName"></h1>
+                <div align="center">
+                    <img id="shopImage" src="" height="300" width="250"></img>
+                </div>
+                <img id="favoriteImage" src="" height="50" width="50"></img>
+                <a href="#" id="FavoriteBtn" data-role="button" data-inline="false" data-theme="e">お気に入り登録する</a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" data-theme="e">
+            <div data-role="navbar" data-theme="t">
+                <ul>
+                    <li><a href="#" onclick="showShopList()" data-icon="top">トップ</a></li>
+                    <li><a href="#" onclick="showFavorite()" data-icon="favorite">お気に入り</a></li>
+                    <li><a href="#" onclick="showInfoPage()" data-icon="information">マイページ</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+  </div>
+
+</body>
+</html>
